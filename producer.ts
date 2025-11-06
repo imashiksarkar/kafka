@@ -29,7 +29,7 @@ async function run() {
           order: { id: "123", amount: 100, currency: "USD" },
         }),
         headers: {
-          type: "electronic",
+          "content-type": "application/json",
         },
       },
     ],

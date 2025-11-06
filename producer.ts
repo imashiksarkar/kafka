@@ -1,7 +1,7 @@
 process.removeAllListeners("warning");
 process.on("warning", () => undefined);
 
-import { Kafka } from "kafkajs";
+import { Kafka, Partitioners } from "kafkajs";
 
 async function run() {
   const kafka = new Kafka({
@@ -9,7 +9,9 @@ async function run() {
     brokers: ["localhost:9092"],
   });
 
-  const producer = kafka.producer();
+  const producer = kafka.producer({
+    createPartitioner: Partitioners.LegacyPartitioner,
+  });
   await producer.connect();
 
   const topicName = "order.paid";

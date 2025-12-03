@@ -17,6 +17,10 @@ services:
                -c max_replication_slots=10
                -c max_wal_senders=10
                -c wal_keep_size=64MB
+
+volumes:
+  pgdata:
+
 networks:
   kafka-network:
     driver: bridge

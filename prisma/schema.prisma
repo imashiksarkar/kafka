@@ -1,0 +1,7 @@
+model Outbox {
+  id         String   @id @default(cuid())
+  key        String   // Use as Kafka message key
+  topic      String   // Kafka topic name
+  payload    JSONB    // Event data
+  created_at DateTime @default(now())
+}

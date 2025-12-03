@@ -13,9 +13,16 @@
     "slot.name": "outbox_slot",
     "publication.name": "outbox_pub",
     "tombstones.on.delete": "false",
-    "transforms": "route",
-    "transforms.route.type": "org.apache.kafka.connect.transforms.RegexRouter",
-    "transforms.route.regex": ".*",
-    "transforms.route.replacement": "${topic}"
+    
+    "transforms": "outbox",
+    "transforms.outbox.type": "io.debezium.transforms.outbox.EventRouter",
+    
+    "transforms.outbox.table.field.event.id": "id",
+    "transforms.outbox.table.field.event.key": "key",
+    "transforms.outbox.table.field.event.payload": "payload",
+    "transforms.outbox.table.field.event.topic": "topic",
+    
+    "transforms.outbox.route.by.field": "topic",
+    "transforms.outbox.drop.tombstones": "false"
   }
 }
